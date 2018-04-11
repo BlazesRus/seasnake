@@ -3,8 +3,12 @@ import io
 import re
 from setuptools import setup
 
+import sys
+import os
+mytmpdir=os.path.dirname(os.path.abspath(sys.argv[0]))
+print("ATTENTION: %s" % mytmpdir)
 
-with io.open('./seasnake/__init__.py', encoding='utf8') as version_file:
+with io.open(mytmpdir+'/seasnake/__init__.py', encoding='utf8') as version_file:
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]", version_file.read(), re.M)
     if version_match:
         version = version_match.group(1)
@@ -12,7 +16,7 @@ with io.open('./seasnake/__init__.py', encoding='utf8') as version_file:
         raise RuntimeError("Unable to find version string.")
 
 
-with io.open('README.rst', encoding='utf8') as readme:
+with io.open(mytmpdir+'/README.rst', encoding='utf8') as readme:
     long_description = readme.read()
 
 
